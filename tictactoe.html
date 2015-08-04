@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- // <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+    <style media="screen">
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    table, td {
+      width: 20%;
+      /*height: 25%;*/
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    #restartButton{
+      width: 20%;
+    }
+    td {
+      padding: 30px;
+      width: 20px;
+    }
+    .oStuff{
+      text-align: right;
+      display: inline-block;
+    }
+    .xStuff{
+      text-align: left;
+      display: inline-block;
+    }
+    .myx{color:rgb(0,191,255);}
+    .myo{color:red;}
+
+    /*body{
+      width: 200px;
+      height: 200px;
+      style: center;
+    }*/
+    </style>
+    <b>
+    <div class="xStuff myx" id="x" style="width: 49%;">
+      X
+    </div>
+    <div class="oStuff myo" id="o" style="width: 49%;">
+      O
+    </div>
+    <b>
+    <div class="xStuff" id="xscore"style="width: 49%;">
+    </div>
+    <div class="oStuff" id="oscore"style="width: 49%;">
+    </div>
+    <center>
+    <table>
+      <b>
+     <tr>
+       <td class= "columnOne rowOne box"> </td>
+       <td class= "columnTwo rowOne box"> </td>
+       <td class= "columnThree rowOne box"> </td>
+    </tr>
+    <tr>
+      <td class= "columnOne rowTwo box"> </td>
+      <td class= "columnTwo rowTwo box"> </td>
+      <td class= "columnThree rowTwo box"> </td>
+    </tr>
+    <tr>
+      <td class= "columnOne rowThree box"> </td>
+      <td class= "columnTwo rowThree box"> </td>
+      <td class= "columnThree rowThree box"> </td>
+    </tr>
+    <b>
+  </table> <button onclick="buttonclick()"id="restartButton"type="button">RESTART!</button>
+</center>
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+
+    var letter="x";
+    var xVal;
+    var oVal;
+    var xscore = 0
+    var oscore = 0
+    var gameOver=false;
+    $('td').click(function (){
+      if(!($(this).text()===" ")){
+        return false;
+      }
+if(gameOver===true){
+  return false
+}
+      $(this).text(letter);
+
+      if (letter==="o") {
+        letter="x";
+        $(this).css('color','red');
+
+      }
+      else if (letter==="x") {
+        letter="o";
+        $(this).css('color', 'rgb(0,191,255)');
+      }
+      // console.log(letter);
+      // letter="o";
+      // console.log(a);
+      xVal=0;
+      oVal=0;
+      $('.columnOne').each(checkIt)
+      xVal=0;
+      oVal=0;
+      $('.columnTwo').each(checkIt)
+      xVal=0;
+      oVal=0;
+      $('.columnThree').each(checkIt)
+      xVal=0;
+      oVal=0;
+      $('.rowOne').each(checkIt)
+      xVal=0;
+      oVal=0;
+      $('.rowTwo').each(checkIt)
+      xVal=0;
+      oVal=0;
+      $('.rowThree').each(checkIt)
+    })
+
+// var full
+
+    function checkIt(){
+      console.log('checking')
+      if(gameOver===false){
+        if($(this).text()==="x"){
+          xVal+=1
+        }
+        else if ($(this).text()==="o"){
+          oVal+=1
+        }
+        if (xVal===3){
+          console.log("game over")
+          gameOver=true;
+          xscore+=1
+          console.log("oval:"+oVal)
+          $('#xscore').html(xscore);
+        }
+        if (oVal===3){
+          console.log("game over")
+          gameOver=true;
+          oscore+=1
+          // score=$('#yscore').html()+1;
+          console.log("oval: "+oVal)
+          $('#oscore').html(oscore);
+
+
+        }
+        full=true;
+        $('.box').each( function (index){
+          if($(this).text()===" "){
+            full=false;
+          }
+          // console.log("this: "+th)
+        })
+        if(full===true){
+          gameover=true}
+      }
+    }
+function buttonclick (){
+  oVal=0
+  xval=0
+  $('.box').html(" ")
+  gameOver=false;
+}
+//     $(".test .text-field").each(function() {
+//     alert($(this).val());
+// });
+
+    // $('.columnOne').each(
+    //    function (){
+    //      if(letter==='x'){
+    //        console.log("val is x");
+    //      }
+    //       else{
+    //         console.log("val is not x");
+    //       }
+    //     }
+    //     );
+// $( ".rowOne" ).click(function() {
+//
+// });
+// $( ".rowTwo" ).click(function() {
+//
+// });
+// $( ".rowThree" ).click(function() {
+//
+// });
+    </script>
+  </body>
+</html>
